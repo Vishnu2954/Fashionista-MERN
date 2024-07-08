@@ -112,51 +112,53 @@ const Cart = () => {
           <br />
           <hr />
           <br />
-          <div className="summary">
-          <b>Summary</b>
-            <p>Total Items: {calculateTotalItems()}</p>
-            <b>Total Price: Rs.{calculateTotalPrice()} </b>
-            <br /><br />
-            <b>Delivery Details</b><br /><br />
-            <div className="delivery-details-form">
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                value={deliveryDetails.name}
-                onChange={handleChange}
-              /><br /><br />
-              <input
-                type="text"
-                name="address"
-                placeholder="Address"
-                value={deliveryDetails.address}
-                onChange={handleChange}
-              /><br /><br />
-              <input
-                type="text"
-                name="city"
-                placeholder="City"
-                value={deliveryDetails.city}
-                onChange={handleChange}
-              /><br /><br />
-              <input
-                type="text"
-                name="postalCode"
-                placeholder="Postal Code"
-                value={deliveryDetails.postalCode}
-                onChange={handleChange}
-              /><br /><br />
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone Number"
-                value={deliveryDetails.phone}
-                onChange={handleChange}
-              />
+         <div className="summary-container">
+            <div className="summary">
+              <b>Summary</b>
+              <p>Total Items: {calculateTotalItems()}</p>
+              <b>Total Price: Rs.{calculateTotalPrice()}</b>
+              <br /><br /><br />
+              <b>Delivery Details</b><br /><br />
+              <div className="delivery-details-form">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Full Name"
+                  value={deliveryDetails.name}
+                  onChange={handleChange}
+                /><br /><br />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  value={deliveryDetails.address}
+                  onChange={handleChange}
+                /><br /><br />
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="City"
+                  value={deliveryDetails.city}
+                  onChange={handleChange}
+                /><br /><br />
+                <input
+                  type="text"
+                  name="postalCode"
+                  placeholder="Postal Code"
+                  value={deliveryDetails.postalCode}
+                  onChange={handleChange}
+                /><br /><br />
+                <input
+                  type="text"
+                  name="phone"
+                  placeholder="Phone Number"
+                  value={deliveryDetails.phone}
+                  onChange={handleChange}
+                />
+              </div>
+              <br /><br />
+              <button onClick={handleCheckout}>Proceed to Checkout</button>
             </div>
-            <br /><br />
-            <button onClick={handleCheckout}>Proceed to Checkout</button>
           </div>
         </div>
       )}
