@@ -14,7 +14,7 @@ const Queries = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:4000/query', { email, concern })
+    axios.post('https://fashionista-uo86.onrender.com/query', { email, concern })
       .then(result => {
         console.log(result);
         if (result.data === "Success") {
