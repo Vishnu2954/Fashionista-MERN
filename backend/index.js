@@ -41,7 +41,7 @@ app.post('/query', async (req, res) => {
 app.post('/order', async (req, res) => {
   const { cartItems, deliveryDetails } = req.body;
   CartModel.create({ cartItems, deliveryDetails }) 
-        .then(checkoutdata => res.json(checkoutdata))
+        .then(orderdata => res.json(orderdata))
         .catch(err => res.status(500).json({ error: "Error saving query" }));
 });
 
