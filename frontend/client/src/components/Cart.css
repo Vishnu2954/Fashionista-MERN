@@ -64,6 +64,20 @@
   transition: background-color 0.2s ease-in-out;
 }
 
+.summary-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.summary {
+  border: 2px solid white;
+  width: 500px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
 .summary button{
   padding: 8px 12px;
   margin: 5px;
