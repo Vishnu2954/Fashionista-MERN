@@ -13,7 +13,7 @@ function LoginForm() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:4000/login',{name,email,password})
+    axios.post('https://fashionista-uo86.onrender.com/login',{name,email,password})
     .then(result=>{
       console.log(result)
       if(result.data==="Success"){
@@ -25,7 +25,7 @@ function LoginForm() {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:4000/signup',{name,email,password})
+    axios.post('https://fashionista-uo86.onrender.com/signup',{name,email,password})
     .then(result=>{console.log(result)
       navigate('/home')
     })
