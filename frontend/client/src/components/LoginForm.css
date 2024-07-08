@@ -79,8 +79,9 @@ html, body {
     cursor: pointer;
     color: #1f1f38;
   }
-  
+
   @media screen and (max-width: 950px) {
+
     .login-form-container {
       display: flex;
       flex-direction: column;
@@ -88,6 +89,19 @@ html, body {
       align-items: center;
       justify-content: center;
     }
+    input[type='text'],input[type='email'],
+    input[type='password'] {
+      width:250px;
+    padding:0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    }
+    .Signup {
+      padding: 1.2rem 3.5rem;
+      text-align: center;
+      margin: 0.5rem; 
+    }
+  
   }
   
   
