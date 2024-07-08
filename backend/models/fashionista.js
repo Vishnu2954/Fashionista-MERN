@@ -11,25 +11,30 @@ const querySchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now }
 });
 
-const deliverySchema = new mongoose.Schema({
+
+const cartItemSchema = new mongoose.Schema({
+    name: String,
+    size: {
+      type: String,
+      enum: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
+    },
+    quantity: Number,
+    price: Number,
+  });
+  
+  const deliveryDetailsSchema = new mongoose.Schema({
     name: String,
     address: String,
     city: String,
     postalCode: String,
-    phone: String
-}, { _id: false });
-
-const cartSchema = new mongoose.Schema({
-    name: String,
-    price: Number,
-    quantity: Number,
-    size: {
-        type: String,
-        enum: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL']
-    },
-    deliveryDetails: deliverySchema,
-    createdAt: { type: Date, default: Date.now }
-});
+    phone: String,
+  });
+  
+  const cartSchema = new mongoose.Schema({
+    cartItems: [cartItemSchema],
+    deliveryDetails: deliveryDetailsSchema,
+    createdAt: { type: Date, default: Date.now },
+  });
 
 const clothesSchema = new mongoose.Schema({
     name: String,
