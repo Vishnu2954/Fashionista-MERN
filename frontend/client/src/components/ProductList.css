@@ -7,12 +7,6 @@ html, body {
     background: linear-gradient(115deg, #40b3c7, #ffd6ed);
 }
 
-.prdt-list {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-}
-
 .prdt-list h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -31,7 +25,7 @@ html, body {
     margin-top: 15px;
     height: 30px; 
     padding: 0 10px; 
-    border-radius: 5px; 
+    border-radius: 25px; 
     box-sizing: border-box; 
     font-size:medium;
 }
@@ -39,7 +33,7 @@ html, body {
 .filter-btn input{
         height: 30px; 
         padding: 0 10px; 
-        border-radius: 5px; 
+        border-radius: 25px; 
         box-sizing:content-box;
         font-size:medium;
         margin-top: 15px;
@@ -48,14 +42,14 @@ html, body {
         margin-top: 0px;
         height: 30px; 
         padding: 0 10px; 
-        border-radius: 5px; 
+        border-radius: 25px; 
         box-sizing: border-box; 
         font-size:medium;
 }
 .filter-btn button {
     margin-top: 15px;
     height: 30px; 
-    padding: 0 10px; 
+    padding: 0 25px; 
     border-radius: 5px; 
     box-sizing: border-box; 
     font-size:medium;
@@ -82,10 +76,11 @@ html, body {
     color: white;
     cursor: pointer;
     margin-top: 3px;
+    border-radius: 25px;
 }
 
 .filter-btn button:hover {
-    background-color: #0056b3;
+    background-color: #560007;
 }
 
 .item-card {
@@ -99,7 +94,7 @@ html, body {
 
 .item-card li {
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 25px;
     padding: 10px;
     transition: transform 0.2s ease-in-out;
 }
