@@ -15,7 +15,7 @@ const Navbar1 = () => {
         </div>
       </div>
       <div className="navb2">
-        <Link to="/" onClick={() => setActive("/")} className={active === "/" ? "active" : ""}>Home</Link>
+        <Link to="/home" onClick={() => setActive("/home")} className={active === "/home" ? "active" : ""}>Home</Link>
         <Link to="/products" onClick={() => setActive("/products")} className={active === "/products" ? "active" : ""}>Products</Link>
         <Link to="/wishlist" onClick={() => setActive("/wishlist")} className={active === "/wishlist" ? "active" : ""}>Wishlist</Link>
         <Link to="/cart" onClick={() => setActive("/cart")} className={active === "/cart" ? "active" : ""}>Cart</Link>
