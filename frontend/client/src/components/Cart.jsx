@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { ItemContext, imageMap } from '../context/ItemContext';
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaTrash, FaMinus, FaPlus } from "react-icons/fa";
 import './Cart.css';
 import axios from 'axios';
 
 const Cart = () => {
-  const { itemsInCart, removeFromCart, imageMap } = useContext(ItemContext);
+  const { itemsInCart, removeFromCart } = useContext(ItemContext);
   const [quantities, setQuantities] = useState({});
   const [deliveryDetails, setDeliveryDetails] = useState({
     name: '',
@@ -56,20 +56,15 @@ const Cart = () => {
       name: item.name,
       size: item.size,
       quantity: quantities[`${item._id}-${item.size}`],
-      price: item.price * (quantities[`${item._id}-${item.size}`])
+      price: item.price * (quantities[`${item._id}-${item.size}`]),
+      ...deliveryDetails
     }));
-
-    const orderDetails = {
-      cartItems,
-      deliveryDetails
-    };
-    console.log("Order Details:", orderDetails);
-
+    console.log("Cart Items:", cartItems);
     try {
-      const response = await axios.post('https://fashionista-uo86.onrender.com/order', orderDetails);
-      console.log(response.data); 
+      const response = await axios.post('https://fashionista-uo86.onrender.com/order', { cartItems });
+      console.log(response.data);
     } catch (error) {
-      console.error('Error saving order:', error); 
+      console.error('Error saving order:', error);
     }
   };
 
@@ -82,83 +77,87 @@ const Cart = () => {
   };
 
   return (
-    <div className="mycart-container">
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginTop: '75px'}}>
+    <div className="cart-container">
+      <div className="cart-header">
         <h2>My Cart</h2>
-        <div style={{ fontSize: '25px', color: 'rgb(211, 10, 121)' }}><FaShoppingCart /></div>
+        <FaShoppingCart className="cart-icon" />
       </div>
       {itemsInCart.length === 0 ? (
-        <p>Your Cart is currently empty.</p>
+        <p className="empty-cart-message">Your Cart is currently empty.</p>
       ) : (
-        <div className="mycart-content">
-          <div className="mycart-items">
+        <div className="cart-content">
+          <div className="cart-items">
             {itemsInCart.map((item) => (
-              <div key={`${item._id}-${item.size}`} className="mycart-item">
-                <img src={imageMap[item.image]} alt={item.name} />
-                <div className="item-details">
+              <div key={`${item._id}-${item.size}`} className="cart-item">
+                <img src={imageMap[item.image]} alt={item.name} className="cart-item-image" />
+                <div className="cart-item-details">
                   <h3>{item.name}</h3>
-                  <p>{item.price} Rs</p>
-                  <p>Size: {item.size}</p>
+                  <p className="cart-item-price">{item.price} Rs</p>
+                  <p className="cart-item-size">Size: {item.size}</p>
                   <div className="quantity-controls">
-                    <button onClick={() => updateQuantity(item, -1)} disabled={quantities[`${item._id}-${item.size}`] <= 1}>-</button>
+                    <button onClick={() => updateQuantity(item, -1)} disabled={quantities[`${item._id}-${item.size}`] <= 1}>
+                      <FaMinus />
+                    </button>
                     <span>{quantities[`${item._id}-${item.size}`] || 1}</span>
-                    <button onClick={() => updateQuantity(item, 1)}>+</button>
-                  </div>
-                  <button onClick={() => removeFromCart(item)}>Remove from Cart</button>
+                    <button onClick={() => updateQuantity(item, 1)}>
+                      <FaPlus />
+                    </button>
                   </div>
                 </div>
+                <button className="remove-button" onClick={() => removeFromCart(item)}>
+                  <FaTrash />
+                </button>
+              </div>
             ))}
           </div>
-          <br />
-          <hr />
-          <br />
-         <div className="summary-container">
-            <div className="summary">
-              <b>Summary</b>
-              <p>Total Items: {calculateTotalItems()}</p>
-              <b>Total Price: Rs.{calculateTotalPrice()}</b>
-              <br /><br /><br />
-              <b>Delivery Details</b><br /><br />
-              <div className="delivery-details-form">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Full Name"
-                  value={deliveryDetails.name}
-                  onChange={handleChange}
-                /><br /><br />
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Address"
-                  value={deliveryDetails.address}
-                  onChange={handleChange}
-                /><br /><br />
-                <input
-                  type="text"
-                  name="city"
-                  placeholder="City"
-                  value={deliveryDetails.city}
-                  onChange={handleChange}
-                /><br /><br />
-                <input
-                  type="text"
-                  name="postalCode"
-                  placeholder="Postal Code"
-                  value={deliveryDetails.postalCode}
-                  onChange={handleChange}
-                /><br /><br />
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Phone Number"
-                  value={deliveryDetails.phone}
-                  onChange={handleChange}
-                />
-              </div>
-              <br /><br />
-              <button onClick={handleCheckout}>Proceed to Checkout</button>
-            </div>
+          <div className="cart-summary">
+            <h3>Order Summary</h3>
+            <p>Total Items: {calculateTotalItems()}</p>
+            <p className="total-price">Total Price: Rs.{calculateTotalPrice()}</p>
+            <form onSubmit={handleCheckout} className="delivery-form">
+              <h4>Delivery Details</h4>
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                value={deliveryDetails.name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="address"
+                placeholder="Address"
+                value={deliveryDetails.address}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="city"
+                placeholder="City"
+                value={deliveryDetails.city}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="text"
+                name="postalCode"
+                placeholder="Postal Code"
+                value={deliveryDetails.postalCode}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number"
+                value={deliveryDetails.phone}
+                onChange={handleChange}
+                required
+              />
+              <button type="submit" className="checkout-button">Proceed to Checkout</button>
+            </form>
           </div>
         </div>
       )}
