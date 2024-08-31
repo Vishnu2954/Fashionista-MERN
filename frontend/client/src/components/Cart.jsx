@@ -67,7 +67,7 @@ const Cart = () => {
     
     console.log("Cart Items:", cartItems);  
     try {  
-      const response = await axios.post('http://localhost:4000/order', { cartItems });  
+      const response = await axios.post('https://fashionista-uo86.onrender.com/order', { cartItems });  
       setOrderStatus('Order placed successfully!');  
       console.log(response.data);  
     } catch (error) {  
