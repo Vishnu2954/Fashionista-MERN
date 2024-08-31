@@ -25,7 +25,7 @@
 .empty-cart-message {
   text-align: center;
   font-size: 1.2rem;
-  color: #666;
+  color: black;
 }
 
 .cart-content {
@@ -76,7 +76,7 @@
 }
 
 .cart-item-size {
-  color: #666;
+  color: black;
 }
 
 .quantity-controls {
